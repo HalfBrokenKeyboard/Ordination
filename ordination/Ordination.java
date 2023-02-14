@@ -13,6 +13,11 @@ public abstract class Ordination {
     // TODO constructor (med specifikation)
 
 
+    public Ordination(LocalDate startDen, LocalDate slutDen) {
+        this.startDen = startDen;
+        this.slutDen = slutDen;
+    }
+
     public LocalDate getStartDen() {
         return startDen;
     }	
