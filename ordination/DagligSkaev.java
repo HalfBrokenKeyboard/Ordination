@@ -2,6 +2,7 @@ package ordination;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class DagligSkaev extends Ordination {
@@ -40,13 +41,16 @@ public class DagligSkaev extends Ordination {
 
     @Override
     public double doegnDosis() {
-        return 0;
+        double totalDosis = samletDosis();
+        int numberOfDays = (int) ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
+        return totalDosis / numberOfDays;
     }
 
     @Override
     public String getType() {
-        return null;
+        return "DagligSkaev";
     }
+
 }
 
 
