@@ -1,10 +1,14 @@
 package ordination;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class PN extends Ordination{
 
     private double antalEnheder;
+    private ArrayList<LocalDate> dosisGivetDatoer = new ArrayList<>();
 
     public PN(LocalDate startDen, LocalDate slutDen) {
         super(startDen, slutDen);
@@ -19,6 +23,7 @@ public class PN extends Ordination{
      */
     public boolean givDosis(LocalDate givesDen) {
         if (givesDen.isAfter(getStartDen()) || givesDen.isBefore(getSlutDen())) {
+            dosisGivetDatoer.add(givesDen);
             return true;
         }
 
@@ -26,14 +31,11 @@ public class PN extends Ordination{
     }
 
     public double doegnDosis() {
-        // TODO
-        return 0.0;
+        return (dosisGivetDatoer.size()*antalEnheder)/(DAYS.between(dosisGivetDatoer.get(0), dosisGivetDatoer.get(dosisGivetDatoer.size()-1)));
     }
 
-
     public double samletDosis() {
-        // TODO
-        return 0.0;
+        return dosisGivetDatoer.size()*antalEnheder;
     }
 
     /**
@@ -41,8 +43,7 @@ public class PN extends Ordination{
      * @return
      */
     public int getAntalGangeGivet() {
-        // TODO
-        return-1;
+        return dosisGivetDatoer.size();
     }
 
     public double getAntalEnheder() {
