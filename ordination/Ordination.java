@@ -16,6 +16,7 @@ public abstract class Ordination {
         this.startDen = startDen;
         this.slutDen = slutDen;
         this.patient = patient;
+        patient.addOrdination(this);
     }
 
     public LocalDate getStartDen() {
