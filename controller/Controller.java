@@ -39,8 +39,12 @@ public class Controller {
 	 */
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen,
 			Patient patient, Laegemiddel laegemiddel, double antal) {
-		// TODO
-		return null;
+		if (checkStartFoerSlut(startDen, slutDen)) {
+			PN pn = new PN(startDen, slutDen, patient, laegemiddel, antal);
+			return pn;
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	/**
@@ -79,7 +83,7 @@ public class Controller {
 	 * Pre: ordination og dato er ikke null
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-		// TODO
+
 	}
 
 	/**
