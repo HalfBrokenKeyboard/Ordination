@@ -26,6 +26,14 @@ public abstract class Ordination {
         return slutDen;
     }
 
+    public Laegemiddel getLaegemiddel() {
+        return laegemiddel;
+    }
+
+    public void setLaegemiddel(Laegemiddel laegemiddel) {
+        this.laegemiddel = laegemiddel;
+    }
+
     /**
      * Antal hele dage mellem startdato og slutdato. Begge dage inklusive.
      * @return antal dage ordinationen gælder for
@@ -56,4 +64,7 @@ public abstract class Ordination {
      * @return
      */
     public abstract String getType();
+
+
+
 }
