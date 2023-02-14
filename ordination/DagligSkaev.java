@@ -31,7 +31,11 @@ public class DagligSkaev extends Ordination {
 
     @Override
     public double samletDosis() {
-        return 0;
+        double totalDosis = 0.0;
+        for (Dosis dosis : doser) {
+            totalDosis += dosis.getAntal();
+        }
+        return totalDosis;
     }
 
     @Override
