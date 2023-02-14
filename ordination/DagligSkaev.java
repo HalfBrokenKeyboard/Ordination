@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class DagligSkaev extends Ordination {
     //TODO
-    private ArrayList<Dosis> doser = new ArrayList<>();
+    private ArrayList<Dosis> doser;
 
 
     public DagligSkaev(LocalDate startDate, LocalDate slutDate, Patient patient) {
@@ -32,18 +32,18 @@ public class DagligSkaev extends Ordination {
 
     @Override
     public double samletDosis() {
+        double totalDosis = samletDosis();
+        int numberOfDays = (int) ChronoUnit.DAYS.between(getStartDen(), getSlutDen()) + 1;
+        return totalDosis / numberOfDays;
+    }
+
+    @Override
+    public double doegnDosis() {
         double totalDosis = 0.0;
         for (Dosis dosis : doser) {
             totalDosis += dosis.getAntal();
         }
         return totalDosis;
-    }
-
-    @Override
-    public double doegnDosis() {
-        double totalDosis = samletDosis();
-        int numberOfDays = (int) ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
-        return totalDosis / numberOfDays;
     }
 
     @Override
