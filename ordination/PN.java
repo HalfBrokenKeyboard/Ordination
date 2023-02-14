@@ -2,7 +2,7 @@ package ordination;
 
 import java.time.LocalDate;
 
-public class PN {
+public class PN extends Ordination {
 
     private double antalEnheder;
 
@@ -40,6 +40,11 @@ public class PN {
 
     public double getAntalEnheder() {
         return antalEnheder;
+    }
+
+    public String getType() {
+
+        return null;
     }
 
 }
