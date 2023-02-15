@@ -37,6 +37,13 @@ public class Patient {
     }
 
     //TODO: Metoder (med specifikation) til at vedligeholde link til Ordination
+    public void addOrdination(Ordination ordination) {
+        ordinations.add(ordination);
+    }
+
+    public ArrayList<Ordination> getOrdinationer() {
+        return ordinations;
+    }
 
     @Override
     public String toString(){
