@@ -115,6 +115,7 @@ public class Controller {
 	public List<Laegemiddel> getAllLaegemidler() {
 		return storage.getAllLaegemidler();
 	}
+	//yo test slet
 
 	/**
 	 * Metode der kan bruges til at checke at en startDato ligger før en
