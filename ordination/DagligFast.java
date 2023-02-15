@@ -7,14 +7,14 @@ import java.time.temporal.ChronoUnit;
 
 public class DagligFast extends Ordination{
     // TODO
-    int morgenAntal;
-    int middagsAntal;
-    int aftenAntal;
-    int natAntal;
+    double morgenAntal;
+    double middagsAntal;
+    double aftenAntal;
+    double natAntal;
 
     Dosis[] doser;
     public DagligFast(LocalDate startDen, LocalDate slutDen, Patient patient,
-                      int morgenAntal, int middagsAntal, int aftenAntal, int natAntal) {
+                      double morgenAntal, double middagsAntal, double aftenAntal, double natAntal) {
         super(startDen, slutDen, patient);
 
         doser = new Dosis[4];
@@ -22,22 +22,21 @@ public class DagligFast extends Ordination{
             doser[0]= new Dosis(LocalTime.of(8,0,0), morgenAntal);
         }
         if (middagsAntal > 0) {
-            doser[1]= new Dosis(LocalTime.of(12,0,0), morgenAntal);
+            doser[1]= new Dosis(LocalTime.of(12,0,0), middagsAntal);
         }
         if (aftenAntal > 0) {
-            doser[2]= new Dosis(LocalTime.of(17,0,0), morgenAntal);
+            doser[2]= new Dosis(LocalTime.of(17,0,0), aftenAntal);
         }
         if (natAntal > 0) {
-            doser[3]= new Dosis(LocalTime.of(22,0,0), morgenAntal);
+            doser[3]= new Dosis(LocalTime.of(22,0,0), natAntal);
         }
 
     }
 
     @Override
     public double samletDosis() {
-        double totalDosis = doegnDosis();
-        double days = ChronoUnit.DAYS.between(getStartDen(), getSlutDen()) + 1;
-        return totalDosis * days;
+        double days =  antalDage();
+        return doegnDosis() * days;
     }
 
     @Override

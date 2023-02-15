@@ -15,7 +15,6 @@ public abstract class Ordination {
     public Ordination(LocalDate startDen, LocalDate slutDen, Patient patient) {
         this.startDen = startDen;
         this.slutDen = slutDen;
-        this.patient = patient;
         patient.addOrdination(this);
     }
 
@@ -65,7 +64,4 @@ public abstract class Ordination {
      * @return
      */
     public abstract String getType();
-
-
-
 }
