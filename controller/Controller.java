@@ -54,6 +54,16 @@ public class Controller {
 			double morgenAntal, double middagAntal, double aftenAntal,
 			double natAntal) {
 		// TODO
+		if (startDen != null && slutDen != null && patient != null && laegemiddel != null) {
+			if (slutDen.isBefore(startDen)) {
+				throw new IllegalArgumentException("Start datoen kan ikke være efter slut dato.");
+			}
+
+			if (morgenAntal>=0 && middagAntal>=0 && aftenAntal>=0 && natAntal>=0) {
+				DagligFast dagligFast = new DagligFast(startDen, slutDen, patient, morgenAntal, middagAntal, aftenAntal, natAntal);
+				return dagligFast;
+			}
+		}
 		return null;
 	}
 
@@ -119,11 +129,7 @@ public class Controller {
 	 * @return true hvis startDato er før slutDato, false ellers.
 	 */
 	private boolean checkStartFoerSlut(LocalDate startDato, LocalDate slutDato) {
-		boolean result = true;
-		if (slutDato.compareTo(startDato) < 0) {
-			result = false;
-		}
-		return result;
+		return startDato.isBefore(slutDato);
 	}
 
 	public Patient opretPatient(String cpr, String navn, double vaegt) {
