@@ -274,7 +274,7 @@ public class ControllerTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             c.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeSlet, antalEnheder);
         });
-        assertEquals("Antal enheder skal være positive", exception.getMessage());
+        assertEquals("Antal enheder skal være positivt", exception.getMessage());
 
     }
 
