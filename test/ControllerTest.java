@@ -29,10 +29,10 @@ public class ControllerTest {
         Laegemiddel laegemiddel = new Laegemiddel("Test Laegemiddel", 1.0, 2.0, 3.0, "stk");
         LocalTime[] klokkeSlet = {LocalTime.of(8, 0), LocalTime.of(12, 0), LocalTime.of(16, 0)};
         double[] antalEnheder = {1.5, 2.0, 3.0};
-        Controller controller = new Controller();
+        Controller c = Controller.getTestController();
 
         //Act
-        DagligSkaev ordination = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeSlet, antalEnheder);
+        DagligSkaev ordination = c.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeSlet, antalEnheder);
 
         // Assert
         assertEquals(startDen, ordination.getStartDen());
