@@ -56,7 +56,7 @@ public class Controller {
 			double morgenAntal, double middagAntal, double aftenAntal,
 			double natAntal) {
 		if(!startDen.isAfter(slutDen)){
-			DagligFast ordination = new DagligFast(startDen, slutDen, patient, middagAntal, aftenAntal, natAntal, morgenAntal);
+			DagligFast ordination = new DagligFast(startDen, slutDen, patient, morgenAntal, middagAntal, aftenAntal, natAntal);
 			ordination.setLaegemiddel(laegemiddel);
 			return ordination;
 
@@ -76,12 +76,13 @@ public class Controller {
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
+
 			if(startDen.isAfter(slutDen)){
 				throw new IllegalArgumentException("Startdato må ikke være efter slutdato");
 			}
 			for(double antal : antalEnheder){
 				if(antal <= 0){
-					throw new IllegalArgumentException("Antal enheder skal være positive");
+					throw new IllegalArgumentException("Antal enheder skal være positivt");
 				}
 			}
 			DagligSkaev ordination = new DagligSkaev(startDen, slutDen, patient);
@@ -104,7 +105,7 @@ public class Controller {
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
 		if (!ordination.givDosis(dato)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Fejl");
 		}
 	}
 

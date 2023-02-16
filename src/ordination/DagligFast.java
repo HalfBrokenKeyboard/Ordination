@@ -14,6 +14,8 @@ public class DagligFast extends Ordination{
     Laegemiddel laegemiddel;
 
     Dosis[] doser;
+
+
     public DagligFast(LocalDate startDen, LocalDate slutDen, Patient patient,
                       double morgenAntal, double middagsAntal, double aftenAntal, double natAntal) {
         super(startDen, slutDen, patient);
@@ -62,4 +64,21 @@ public class DagligFast extends Ordination{
     public Dosis[] getDoser() {
         return doser;
     }
+
+    public double getMorgenAntal() {
+        return morgenAntal;
+    }
+
+    public double getMiddagsAntal() {
+        return middagsAntal;
+    }
+
+    public double getAftenAntal() {
+        return aftenAntal;
+    }
+
+    public double getNatAntal() {
+        return natAntal;
+    }
+
 }
