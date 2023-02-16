@@ -34,11 +34,12 @@ public class ControllerTest {
         PN faktiskPN = c.opretPNOrdination(startDen,slutDen,patient,laegemiddel,antalEnheder);
 
         //Assert
-        assertEquals(startDen, faktiskPN.getStartDen());
-        assertEquals(slutDen, faktiskPN.getSlutDen());
-        assertEquals(laegemiddel, faktiskPN.getLaegemiddel());
-        assertEquals(patient, faktiskPN.getPatient());
-        assertEquals(antalEnheder, faktiskPN.getAntalEnheder());
+        PN forventetPN = new PN(startDen,slutDen,patient,laegemiddel,antalEnheder);
+        assertEquals(forventetPN.getStartDen(), faktiskPN.getStartDen());
+        assertEquals(forventetPN.getSlutDen(), faktiskPN.getSlutDen());
+        assertEquals(forventetPN.getLaegemiddel(), faktiskPN.getLaegemiddel());
+        assertEquals(forventetPN.getPatient(), faktiskPN.getPatient());
+        assertEquals(forventetPN.getAntalEnheder(), faktiskPN.getAntalEnheder());
 
     }
 
