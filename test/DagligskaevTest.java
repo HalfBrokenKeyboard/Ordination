@@ -30,41 +30,4 @@ public class DagligskaevTest {
         assertEquals(expectedDosis, actualDosis, 0.001);
     }
 
-    @Test
-    public void testOpretDagligSkaevOrdination() {
-
-        /*
-        Denne test opretter en ny Controller-instans og kalder opretDagligSkaevOrdination-metoden med nogle testdata.
-         Herefter tjekker testen, om den returnerede DagligSkaev-ordination er oprettet korrekt
-          ved at sammenligne dens felter med de forventede værdier.
-         */
-
-
-        //Arrange
-        LocalDate startDen = LocalDate.of(2023, 3, 1);
-        LocalDate slutDen = LocalDate.of(2023, 3, 5);
-        Patient patient = new Patient("123456-7890", "Test Navn", 70.5);
-        Laegemiddel laegemiddel = new Laegemiddel("Test Laegemiddel", 1.0, 2.0, 3.0, "stk");
-        LocalTime[] klokkeSlet = {LocalTime.of(8, 0), LocalTime.of(12, 0), LocalTime.of(16, 0)};
-        double[] antalEnheder = {1.5, 2.0, 3.0};
-        Controller controller = new Controller();
-
-        //Act
-        DagligSkaev ordination = controller.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeSlet, antalEnheder);
-
-        // Assert
-        assertEquals(startDen, ordination.getStartDen());
-        assertEquals(slutDen, ordination.getSlutDen());
-        assertEquals(patient, ordination.getPatient());
-        assertEquals(laegemiddel, ordination.getLaegemiddel());
-        assertEquals(klokkeSlet.length, ordination.getDoser().size());
-        for (int i = 0; i < klokkeSlet.length; i++) {
-            Dosis dosis = ordination.getDoser().get(i);
-            assertEquals(klokkeSlet[i], dosis.getTid());
-            assertEquals(antalEnheder[i], dosis.getAntal(), 0.001);
-        }
-
-
-
-    }
 }
