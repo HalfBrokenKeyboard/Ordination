@@ -55,8 +55,6 @@ public class Controller {
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			double morgenAntal, double middagAntal, double aftenAntal,
 			double natAntal) {
-		// TODO
-
 		if(!startDen.isAfter(slutDen)){
 			DagligFast ordination = new DagligFast(startDen, slutDen, patient, middagAntal, aftenAntal, natAntal, morgenAntal);
 			ordination.setLaegemiddel(laegemiddel);
@@ -78,8 +76,6 @@ public class Controller {
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
-		//TODO
-
 			if(startDen.isAfter(slutDen)){
 				throw new IllegalArgumentException("Startdato må ikke være efter slutdato");
 			}
@@ -121,7 +117,6 @@ public class Controller {
 	 * Pre: patient og lægemiddel er ikke null
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
-		//TODO
 		double vægt = patient.getVaegt();
 		double doseFaktor;
 
@@ -142,7 +137,6 @@ public class Controller {
 	 */
 	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart,
 			double vægtSlut, Laegemiddel laegemiddel) {
-		// TODO
 		int count = 0;
 		for(Patient patient : getAllPatienter()){
 			if(patient.getVaegt() >= vægtStart && patient.getVaegt() <= vægtSlut){

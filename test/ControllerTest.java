@@ -15,7 +15,6 @@ public class ControllerTest {
 
     @Test
     public void testOpretDagligSkaevOrdination() {
-
         /*
         Denne test opretter en ny Controller-instans og kalder opretDagligSkaevOrdination-metoden med nogle testdata.
          Herefter tjekker testen, om den returnerede DagligSkaev-ordination er oprettet korrekt
@@ -45,6 +44,8 @@ public class ControllerTest {
             assertEquals(klokkeSlet[i], dosis.getTid());
             assertEquals(antalEnheder[i], dosis.getAntal(), 0.001);
         }
+
+
 
 
 
