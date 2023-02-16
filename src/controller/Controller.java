@@ -41,7 +41,7 @@ public class Controller {
 			pn.setLaegemiddel(laegemiddel);
 			return pn;
 		} else {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Fejl");
 		}
 	}
 
