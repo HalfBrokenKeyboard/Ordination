@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ControllerTest {
 
@@ -34,12 +34,11 @@ public class ControllerTest {
         PN faktiskPN = c.opretPNOrdination(startDen,slutDen,patient,laegemiddel,antalEnheder);
 
         //Assert
-        PN forventetPN = new PN(startDen,slutDen,patient,laegemiddel,antalEnheder);
-        assertEquals(forventetPN.getStartDen(), faktiskPN.getStartDen());
-        assertEquals(forventetPN.getSlutDen(), faktiskPN.getSlutDen());
-        assertEquals(forventetPN.getLaegemiddel(), faktiskPN.getLaegemiddel());
-        assertEquals(forventetPN.getPatient(), faktiskPN.getPatient());
-        assertEquals(forventetPN.getAntalEnheder(), faktiskPN.getAntalEnheder());
+        assertEquals(startDen, faktiskPN.getStartDen());
+        assertEquals(slutDen, faktiskPN.getSlutDen());
+        assertEquals(laegemiddel, faktiskPN.getLaegemiddel());
+        assertEquals(patient, faktiskPN.getPatient());
+        assertEquals(antalEnheder, faktiskPN.getAntalEnheder());
 
     }
 
@@ -57,11 +56,11 @@ public class ControllerTest {
 
         //Act
         Exception exception = assertThrows(RuntimeException.class, () -> {
-            PN faktiskPN = c.opretPNOrdination(startDen,slutDen,patient,laegemiddel,antalEnheder);
+            c.opretPNOrdination(startDen,slutDen,patient,laegemiddel,antalEnheder);
 
         });
         //Assert
-        assertEquals("Fejl", exception.getMessage());
+        assertEquals("Antal enheder er mindre end eller lige med 0", exception.getMessage());
 
     }
     @Test
@@ -78,11 +77,11 @@ public class ControllerTest {
 
         //Act
         Exception exception = assertThrows(RuntimeException.class, () -> {
-            PN faktiskPN = c.opretPNOrdination(startDen,slutDen,patient,laegemiddel,antalEnheder);
+            c.opretPNOrdination(startDen,slutDen,patient,laegemiddel,antalEnheder);
 
         });
         //Assert
-        assertEquals("Fejl", exception.getMessage());
+        assertEquals("Slut dato er før star dato", exception.getMessage());
 
     }
     @Test
@@ -208,6 +207,8 @@ public class ControllerTest {
         assertEquals("Fejl", exception.getMessage());
     }
 
+    // Daglig Skæv Controller Test
+
     @Test
     public void TC1_testOpretDagligSkaevOrdinationOpret() {
 
@@ -275,8 +276,125 @@ public class ControllerTest {
             c.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeSlet, antalEnheder);
         });
         assertEquals("Antal enheder skal være positive", exception.getMessage());
-
     }
 
 
+    // Daglig Fast Controller Test
+
+    @Test
+    public void TC1_opretDagligFastOrdination() {
+        startDen = LocalDate.of(2023, 2, 10);
+        slutDen = LocalDate.of(2023, 2, 25);
+        patient = new Patient("123456-7890",  "Fornavn Efternavn", 80);
+        laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.10,  0.20, 0.30, "Styk");
+
+        double morgenAntal = 1.0;
+        double middagsAntal = 0.0;
+        double aftenAntal = 1.0;
+        double natAntal = 0.0;
+
+        Controller c = Controller.getTestController();
+
+        //Act
+        DagligFast ordination = c.opretDagligFastOrdination(startDen, slutDen, patient, laegemiddel, morgenAntal, middagsAntal, aftenAntal, natAntal);
+
+        // Assert
+        assertEquals(startDen, ordination.getStartDen());
+        assertEquals(slutDen, ordination.getSlutDen());
+        assertEquals(laegemiddel, ordination.getLaegemiddel());
+        assertEquals(morgenAntal, ordination.getMorgenAntal());
+        assertEquals(middagsAntal, ordination.getMiddagsAntal());
+        assertEquals(aftenAntal, ordination.getAftenAntal());
+        assertEquals(natAntal, ordination.getNatAntal());
+    }
+    @Test
+    public void TC2_opretDagligFastOrdination() {
+        startDen = LocalDate.of(2023, 2, 10);
+        slutDen = LocalDate.of(2023, 2, 11);
+        patient = new Patient("123456-7890",  "Fornavn Efternavn", 80);
+        laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.10,  0.20, 0.30, "Styk");
+
+        double morgenAntal = 0.0;
+        double middagsAntal = 1.0;
+        double aftenAntal = 0.0;
+        double natAntal = 1.0;
+
+        Controller c = Controller.getTestController();
+
+        //Act
+        DagligFast ordination = c.opretDagligFastOrdination(startDen, slutDen, patient, laegemiddel, morgenAntal, middagsAntal, aftenAntal, natAntal);
+
+        // Assert
+        assertEquals(startDen, ordination.getStartDen());
+        assertEquals(slutDen, ordination.getSlutDen());
+        assertEquals(laegemiddel, ordination.getLaegemiddel());
+        assertEquals(morgenAntal, ordination.getMorgenAntal());
+        assertEquals(middagsAntal, ordination.getMiddagsAntal());
+        assertEquals(aftenAntal, ordination.getAftenAntal());
+        assertEquals(natAntal, ordination.getNatAntal());
+    }
+
+    @Test
+    public void TC3_opretDagligFastOrdination() {
+        startDen = LocalDate.of(2023, 2, 10);
+        slutDen = LocalDate.of(2023, 2, 20);
+        patient = new Patient("123456-7890",  "Fornavn Efternavn", 80);
+        laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.10,  0.20, 0.30, "Styk");
+
+        double morgenAntal = 0.0;
+        double middagsAntal = 0.0;
+        double aftenAntal = 0.0;
+        double natAntal = 0.0;
+
+        Controller c = Controller.getTestController();
+
+        //Act & assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            c.opretDagligFastOrdination(startDen, slutDen, patient, laegemiddel, morgenAntal, middagsAntal, aftenAntal, natAntal);
+        });
+        assertEquals("Skal angive mindst en dosis", exception.getMessage());
+    }
+
+    @Test
+    public void TC4_opretDagligFastOrdination() {
+        startDen = LocalDate.of(2023, 2, 10);
+        slutDen = LocalDate.of(2023, 2, 8);
+        patient = new Patient("123456-7890",  "Fornavn Efternavn", 80);
+        laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.10,  0.20, 0.30, "Styk");
+
+        double morgenAntal = 1;
+        double middagsAntal = 1;
+        double aftenAntal = 0.0;
+        double natAntal = 0.0;
+
+        Controller c = Controller.getTestController();
+
+        //Act & assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            c.opretDagligFastOrdination(startDen, slutDen, patient, laegemiddel, morgenAntal, middagsAntal, aftenAntal, natAntal);
+        });
+        assertEquals("Slut dato er før start dato", exception.getMessage());
+    }
+
+
+    @Test
+    public void TC5_opretDagligFastOrdination() {
+        startDen = LocalDate.of(2023, 2, 10);
+        slutDen = LocalDate.of(2023, 2, 18);
+        patient = new Patient("123456-7890",  "Fornavn Efternavn", 80);
+        laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.10,  0.20, 0.30, "Styk");
+
+        double morgenAntal = -1;
+        double middagsAntal = 0.0;
+        double aftenAntal = 0.0;
+        double natAntal = 0.0;
+
+        Controller c = Controller.getTestController();
+
+        //Act & assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            c.opretDagligFastOrdination(startDen, slutDen, patient, laegemiddel, morgenAntal, middagsAntal, aftenAntal, natAntal);
+        });
+        assertEquals("Skal angive mindst en dosis", exception.getMessage());
+    }
 }

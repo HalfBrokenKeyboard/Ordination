@@ -36,13 +36,20 @@ public class Controller {
 	 */
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen,
 			Patient patient, Laegemiddel laegemiddel, double antal) {
-		if (checkStartFoerSlut(startDen, slutDen)) {
-			PN pn = new PN(startDen, slutDen, patient, laegemiddel, antal);
-			pn.setLaegemiddel(laegemiddel);
-			return pn;
-		} else {
-			throw new IllegalArgumentException();
+		PN pn = new PN(startDen, slutDen, patient, laegemiddel, antal);
+		pn.setLaegemiddel(laegemiddel);
+		if (!checkStartFoerSlut(startDen, slutDen)) {
+			throw new IllegalArgumentException("Slut dato er før star dato");
 		}
+
+		if (antal <= 0) {
+			throw new IllegalArgumentException("Antal enheder er mindre end eller lige med 0");
+		}
+
+		if (pn.getAntalGangeGivet() <= 0) {
+			throw new IllegalArgumentException("Dosis ikke givet");
+		}
+		return pn;
 	}
 
 	/**
@@ -53,16 +60,20 @@ public class Controller {
 	 */
 	public DagligFast opretDagligFastOrdination(LocalDate startDen,
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
-			double morgenAntal, double middagAntal, double aftenAntal,
+			double morgenAntal, double middagsAntal, double aftenAntal,
 			double natAntal) {
-		if(!startDen.isAfter(slutDen)){
-			DagligFast ordination = new DagligFast(startDen, slutDen, patient, middagAntal, aftenAntal, natAntal, morgenAntal);
-			ordination.setLaegemiddel(laegemiddel);
-			return ordination;
 
-		} else {
-			throw new IllegalArgumentException();
+		DagligFast ordination = new DagligFast(startDen, slutDen, patient, morgenAntal, middagsAntal, aftenAntal, natAntal);
+		ordination.setLaegemiddel(laegemiddel);
+
+		if(startDen.isAfter(slutDen)){
+			throw new IllegalArgumentException("Slut dato er før start dato");
 		}
+		if (morgenAntal <= 0  && middagsAntal <= 0 && aftenAntal <= 0 && natAntal <= 0) {
+			throw new IllegalArgumentException("Skal angive mindst en dosis");
+		}
+
+		return ordination;
 	}
 
 	/**

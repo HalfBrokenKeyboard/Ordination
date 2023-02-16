@@ -62,4 +62,20 @@ public class DagligFast extends Ordination{
     public Dosis[] getDoser() {
         return doser;
     }
+
+    public double getMorgenAntal() {
+        return morgenAntal;
+    }
+
+    public double getMiddagsAntal() {
+        return middagsAntal;
+    }
+
+    public double getAftenAntal() {
+        return aftenAntal;
+    }
+
+    public double getNatAntal() {
+        return natAntal;
+    }
 }
