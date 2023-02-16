@@ -85,7 +85,7 @@ public class Controller {
 			}
 			for(double antal : antalEnheder){
 				if(antal <= 0){
-					throw new IllegalArgumentException("Antal enheder skal være positivt");
+					throw new IllegalArgumentException("Antal enheder skal være positive");
 				}
 			}
 			DagligSkaev ordination = new DagligSkaev(startDen, slutDen, patient);
