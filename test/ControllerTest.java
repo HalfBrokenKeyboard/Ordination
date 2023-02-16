@@ -26,21 +26,20 @@ public class ControllerTest {
         Laegemiddel laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.10,  0.20, 0.30, "Styk");
         Controller c = Controller.getController();
 
-        double antalEnheder = 1;
-        LocalDate startDen = LocalDate.parse("2023-02-20");
-        LocalDate slutDen = LocalDate.parse("2023-02-25");
+        double antalEnheder = 1.0;
+        LocalDate startDen = LocalDate.of(2023, 2, 20);
+        LocalDate slutDen = LocalDate.of(2023, 2, 25);
 
         //Act
         PN faktiskPN = c.opretPNOrdination(startDen,slutDen,patient,laegemiddel,antalEnheder);
 
         //Assert
         PN forventetPN = new PN(startDen,slutDen,patient,laegemiddel,antalEnheder);
-        assertEquals(forventetPN.getStartDen(), faktiskPN.getStartDen());
-        assertEquals(forventetPN.getSlutDen(), faktiskPN.getSlutDen());
-        assertEquals(forventetPN.getLaegemiddel(), faktiskPN.getLaegemiddel());
+        assertEquals(antalEnheder, faktiskPN.getAntalEnheder());
+        assertEquals(startDen, faktiskPN.getStartDen());
+        assertEquals(slutDen, faktiskPN.getSlutDen());
+        assertEquals(laegemiddel, faktiskPN.getLaegemiddel());
         assertEquals(forventetPN.getPatient(), faktiskPN.getPatient());
-        assertEquals(forventetPN.getAntalEnheder(), faktiskPN.getAntalEnheder());
-
     }
 
     @Test
@@ -104,7 +103,7 @@ public class ControllerTest {
         PN forventetPN = new PN(startDen,slutDen,patient,laegemiddel,antalEnheder);
         assertEquals(forventetPN.getStartDen(), faktiskPN.getStartDen());
         assertEquals(forventetPN.getSlutDen(), faktiskPN.getSlutDen());
-        assertEquals(forventetPN.getLaegemiddel(), faktiskPN.getLaegemiddel());
+        assertEquals(laegemiddel, faktiskPN.getLaegemiddel());
         assertEquals(forventetPN.getPatient(), faktiskPN.getPatient());
         assertEquals(forventetPN.getAntalEnheder(), faktiskPN.getAntalEnheder());
 
@@ -276,7 +275,7 @@ public class ControllerTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             c.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeSlet, antalEnheder);
         });
-        assertEquals("Antal enheder skal være positive", exception.getMessage());
+        assertEquals("Antal enheder skal være positivt", exception.getMessage());
     }
 
 

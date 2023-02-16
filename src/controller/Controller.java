@@ -46,7 +46,7 @@ public class Controller {
 			throw new IllegalArgumentException("Antal enheder er mindre end eller lige med 0");
 		}
 
-		if (pn.getAntalGangeGivet() <= 0) {
+		if (pn.getAntalGangeGivet() < 0) {
 			throw new IllegalArgumentException("Dosis ikke givet");
 		}
 		return pn;
