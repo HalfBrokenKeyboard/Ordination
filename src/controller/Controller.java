@@ -35,7 +35,7 @@ public class Controller {
 	 * @return opretter og returnerer en PN ordination.
 	 */
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen,
-			Patient patient, Laegemiddel laegemiddel, double antal) {
+								Patient patient, Laegemiddel laegemiddel, double antal) {
 		PN pn = new PN(startDen, slutDen, patient, laegemiddel, antal);
 		pn.setLaegemiddel(laegemiddel);
 		if (!checkStartFoerSlut(startDen, slutDen)) {

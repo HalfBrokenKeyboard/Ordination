@@ -50,7 +50,10 @@ public class DagligSkaev extends Ordination {
 
         if(getSlutDen() == null){
             throw new IllegalArgumentException("Ingen slut dato");
+        }
 
+        if(getDoser() == null){
+            throw new IllegalArgumentException("Doser er lig med null");
         }
             double totalDosis = 0.0;
             for (Dosis dosis : doser) {

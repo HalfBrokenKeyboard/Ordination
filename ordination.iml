@@ -51,6 +51,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Javafx" level="application" />
+    <orderEntry type="library" name="javafx1" level="application" />
   </component>
 </module>

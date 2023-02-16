@@ -104,6 +104,31 @@ public void setup() {
         assertEquals(expectedDosis, actualDosis, 0.001);
     }
 
+    @Test
+    public void TC6_Dagligskaev_DoegnDosis(){
+
+        //Arrange
+        DagligSkaev dagligSkaev = new DagligSkaev(startDen, null, patient) ;
+        //Act & assert
+
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            dagligSkaev.doegnDosis();
+        });
+        assertEquals(exception.getMessage(), "Ingen slut dato");
+
+    }
+
+    @Test
+    public void TC7_DagligSkaev_DoegnDosis(){
+    DagligSkaev da = new DagligSkaev(startDen,slutDen,patient);
+    dagligSkaev.opretDosis(LocalTime.of(8,0), -1);
+
+    Exception exception = assertThrows(IllegalArgumentException.class, () ->{
+        dagligSkaev.doegnDosis();
+    });
+    assertEquals(exception.getMessage(), "Doser er lig med null");
+    }
 }
 
 
