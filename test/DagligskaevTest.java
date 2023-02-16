@@ -26,6 +26,9 @@ public void setup() {
     dagligSkaev = new DagligSkaev(startDen, slutDen, patient);
 }
 
+
+    // -----------------------------------------------
+    // Test for doegnDosis metoden
     @Test
     public void TC1_Dagligskaev_DoegnDosis(){
         

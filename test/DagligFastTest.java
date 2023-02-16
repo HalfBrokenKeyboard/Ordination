@@ -27,6 +27,8 @@ public class DagligFastTest {
         laegemiddel = new Laegemiddel("Acetylsalicylsyre", 0.10,  0.20, 0.30, "Styk");
         startdato = LocalDate.of(2023, 02, 10);
     }
+    // -----------------------------------------------
+    // Test for doegnDosis metoden
     @Test
     @Order(1)
     public void TC1_Morgen_og_Aften() {
