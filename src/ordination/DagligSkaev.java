@@ -8,11 +8,13 @@ import java.util.ArrayList;
 public class DagligSkaev extends Ordination {
 
     //TODO
+    private Patient patient;
     private ArrayList<Dosis> doser;
 
 
     public DagligSkaev(LocalDate startDate, LocalDate slutDate, Patient patient) {
         super(startDate, slutDate, patient);
+        this.patient = patient;
         this.doser = new ArrayList<>();
     }
 
@@ -40,12 +42,24 @@ public class DagligSkaev extends Ordination {
 
     @Override
     public double doegnDosis() {
-        double totalDosis = 0.0;
-        for (Dosis dosis : doser) {
-            totalDosis += dosis.getAntal();
+
+        if(getStartDen() == null) {
+            throw new IllegalArgumentException("Ingen start dato");
+
         }
-        return totalDosis;
-    }
+
+        if(getSlutDen() == null){
+            throw new IllegalArgumentException("Ingen slut dato");
+
+        }
+            double totalDosis = 0.0;
+            for (Dosis dosis : doser) {
+                totalDosis += dosis.getAntal();
+            }
+            return totalDosis;
+        }
+
+
 
     @Override
     public String getType() {
