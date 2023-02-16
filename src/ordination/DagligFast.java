@@ -48,6 +48,9 @@ public class DagligFast extends Ordination{
 
     @Override
     public double doegnDosis() {
+        if (morgenAntal <= 0  && middagsAntal <= 0 && aftenAntal <= 0 && natAntal <= 0) {
+            throw new IllegalArgumentException("Ingen doser angivet");
+        }
         return morgenAntal + middagsAntal + aftenAntal + natAntal;
     }
 
