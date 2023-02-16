@@ -57,7 +57,7 @@ public class ControllerTest {
 
         //Act
         Exception exception = assertThrows(RuntimeException.class, () -> {
-            PN faktiskPN = c.opretPNOrdination(startDen,slutDen,patient,laegemiddel,antalEnheder);
+            c.opretPNOrdination(startDen,slutDen,patient,laegemiddel,antalEnheder);
 
         });
         //Assert

@@ -36,9 +36,12 @@ public class Controller {
 	 */
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen,
 			Patient patient, Laegemiddel laegemiddel, double antal) {
-		if (checkStartFoerSlut(startDen, slutDen)) {
+
+		if (checkStartFoerSlut(startDen, slutDen) && antal > 0) {
 			PN pn = new PN(startDen, slutDen, patient, laegemiddel, antal);
-			pn.setLaegemiddel(laegemiddel);
+
+			storage.addLaegemiddel(laegemiddel);
+			storage.addPatient(patient);
 			return pn;
 		} else {
 			throw new IllegalArgumentException("Fejl");
