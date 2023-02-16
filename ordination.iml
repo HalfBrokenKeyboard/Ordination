@@ -25,7 +25,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="Mockito" level="application" />
-    <orderEntry type="library" name="javafx" level="application" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
         <CLASSES>
@@ -52,5 +51,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Javafx" level="application" />
   </component>
 </module>

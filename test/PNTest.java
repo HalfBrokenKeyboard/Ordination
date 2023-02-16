@@ -4,20 +4,28 @@ import ordination.Patient;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
 public class PNTest {
 
     private PN pn;
-
-
+    // -----------------------------------------------
+    // Test for doegnDosis metoden
     @Test
     public void TC1_PN_DoegnDosis(){
-
         //Arrange
         LocalDate startDen = LocalDate.of(2023, 2, 11);
-        LocalDate slutDen = LocalDate.of(2023, 2, 15);
+        LocalDate mellemDen = LocalDate.of(2023, 2, 15);
+        LocalDate slutDen = LocalDate.of(2023, 2, 20);
+
+        ArrayList<LocalDate> datoer = new ArrayList<>();
+
+        datoer.add(startDen);
+        datoer.add(mellemDen);
+        datoer.add(slutDen);
+
         Laegemiddel laegemiddel = new Laegemiddel("Test", 2.5,1.0,1.0, "mg");
         Patient patient = new Patient("123456-7810", "Peter",80);
         PN pn = new PN(startDen, slutDen, patient, laegemiddel, 0.20);
@@ -40,20 +48,7 @@ public class PNTest {
         PN pn = new PN(startDen, slutDen, patient, laegemiddel, 0.50);
         pn.givDosis(LocalDate.of(2023, 2, 11));
         pn.givDosis(LocalDate.of(2023, 2, 15));
-
-
-
     }
-
-
-
-
-
-
-
-    // -----------------------------------------------
-    // Test for doegnDosis metoden
-
 
     // -----------------------------------------------
     // Test for givDosis metoden
