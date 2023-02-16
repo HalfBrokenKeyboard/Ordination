@@ -122,12 +122,11 @@ public void setup() {
     @Test
     public void TC7_DagligSkaev_DoegnDosis(){
     DagligSkaev da = new DagligSkaev(startDen,slutDen,patient);
-    dagligSkaev.opretDosis(LocalTime.of(8,0), -1);
 
     Exception exception = assertThrows(IllegalArgumentException.class, () ->{
         dagligSkaev.doegnDosis();
     });
-    assertEquals(exception.getMessage(), "Doser er lig med null");
+    assertEquals(exception.getMessage(), "Doser er lig med 0");
     }
 }
 
