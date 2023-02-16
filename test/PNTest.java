@@ -1,14 +1,56 @@
-import net.bytebuddy.asm.Advice;
 import ordination.Laegemiddel;
 import ordination.PN;
 import ordination.Patient;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import static org.junit.Assert.assertEquals;
 
 public class PNTest {
+
+    private PN pn;
+
+
+    @Test
+    public void TC1_PN_DoegnDosis(){
+
+        //Arrange
+        LocalDate startDen = LocalDate.of(2023, 2, 11);
+        LocalDate slutDen = LocalDate.of(2023, 2, 15);
+        Laegemiddel laegemiddel = new Laegemiddel("Test", 2.5,1.0,1.0, "mg");
+        Patient patient = new Patient("123456-7810", "Peter",80);
+        PN pn = new PN(startDen, slutDen, patient, laegemiddel, 0.20);
+        pn.givDosis(LocalDate.of(2023, 2, 11));
+        pn.givDosis(LocalDate.of(2023, 2, 15));
+
+        double actual = pn.doegnDosis();
+
+        double expected = 0.6;
+        assertEquals(expected, actual, expected);
+
+    }
+
+    @Test
+    public void TC2_PN_DoegnDosis(){
+        LocalDate startDen = LocalDate.of(2023, 2, 11);
+        LocalDate slutDen = LocalDate.of(2023, 2, 15);
+        Laegemiddel laegemiddel = new Laegemiddel("Test", 2.5,1.0,1.0, "mg");
+        Patient patient = new Patient("123456-7810", "Peter",80);
+        PN pn = new PN(startDen, slutDen, patient, laegemiddel, 0.50);
+        pn.givDosis(LocalDate.of(2023, 2, 11));
+        pn.givDosis(LocalDate.of(2023, 2, 15));
+
+
+
+    }
+
+
+
+
+
+
+
     // -----------------------------------------------
     // Test for doegnDosis metoden
 

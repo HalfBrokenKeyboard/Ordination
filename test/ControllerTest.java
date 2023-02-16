@@ -234,7 +234,7 @@ public class ControllerTest {
         for (int i = 0; i < klokkeSlet.length; i++) {
             Dosis dosis = ordination.getDoser().get(i);
             assertEquals(klokkeSlet[i], dosis.getTid());
-            assertEquals(antalEnheder[i], dosis.getAntal(), 0.001);
+            assertEquals(antalEnheder[i], dosis.getAntal());
         }
     }
 
