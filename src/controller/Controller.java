@@ -84,6 +84,15 @@ public class Controller {
 	 * Pre: startDen, slutDen, patient og laegemiddel er ikke null
 	 * Pre: alle tal i antalEnheder > 0
 	 */
+
+	/*
+	Denne metode opretter og retunerer en ny "DagligSkaev ordination" baseret på den angivne parametre. Metoden
+	kontrollerer først om, startdatoen er efter slutdatoen, og kaster en Exception, hvis det er tilfældet.
+	Herefter kontrollerer den, om alle angivne antal enheder er positive, og kaster en Exception, hvis det ikke er tilfældet.
+	Metoden opretter derefter en ny dagligskaev ordination og tildeler den angivne patient og lægemiddel. Den opretter
+	herefter en dosis for hver angivet tid og antalenheder ved hjælp af opretDosis() metoden i dagligSkaev klassen. Endelig
+	returerer metoden den oprettet ordination.
+	 */
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen,
 			LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			LocalTime[] klokkeSlet, double[] antalEnheder) {
