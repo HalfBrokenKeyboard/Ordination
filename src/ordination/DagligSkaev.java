@@ -60,7 +60,7 @@ public class DagligSkaev extends Ordination {
     }
 
     /*
-    Denne metode, doegnDosis(), beregner den samlede mængde af medicin, der skal tages på en enkelt dag, baseret på dosis og antal doser pr. dag.
+    Denne metode, doegnDosis(), beregner den samlede mængde af medicin, der skal tages på en enkelt dag.
 
     Metoden har tre betingelser, der skal opfyldes, før beregningen kan udføres:
     Der skal være en startdato for ordinationen

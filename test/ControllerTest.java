@@ -209,9 +209,13 @@ public class ControllerTest {
 
     // Daglig Skæv Controller Test
 
+
+
+
     @Test
     public void TC1_testOpretDagligSkaevOrdinationOpret() {
 
+        // først sætter vi nogle inputværdier op til at kalde "opretDagligSkaevOrdination" metoden med
         //Arrange
         startDen = LocalDate.of(2023, 2, 20);
         slutDen = LocalDate.of(2023, 2, 25);
@@ -219,11 +223,19 @@ public class ControllerTest {
         laegemiddel = new Laegemiddel("Test Laegemiddel", 1.0, 2.0, 3.0, "stk");
         LocalTime[] klokkeSlet = {LocalTime.of(8, 0), LocalTime.of(12, 0), LocalTime.of(16, 0)};
         double[] antalEnheder = {1.0, 2.0,3.0};
+
+        //Så opretter vi en instans af controlleren
         Controller c = Controller.getTestController();
 
+        //her kalder vi opretDagligSkaevOrdination metoden med de opstillede inputværdier
         //Act
         DagligSkaev ordination = c.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeSlet, antalEnheder);
 
+
+        /*Til sidst testes der om resultaterne fra metoden er korrekte.
+        det gør vi ved at sammenligne forventede værdier med de faktisk værdier, der er returneret fra metoden.
+        hvis alle sammenligningerne er sande, så består testen.
+        */
         // Assert
         assertEquals(startDen, ordination.getStartDen());
         assertEquals(slutDen, ordination.getSlutDen());
@@ -247,10 +259,10 @@ public class ControllerTest {
         laegemiddel = new Laegemiddel("Test Laegemiddel", 1.0, 2.0, 3.0, "stk");
         LocalTime[] klokkeSlet = {LocalTime.of(8, 0), LocalTime.of(12, 0), LocalTime.of(16, 0)};
         double[] antalEnheder = {1.0, 2.0,3.0};
+
         Controller c = Controller.getTestController();
 
         //Act & assert
-
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
              c.opretDagligSkaevOrdination(startDen, slutDen, patient, laegemiddel, klokkeSlet, antalEnheder);
         });
