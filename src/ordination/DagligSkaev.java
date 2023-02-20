@@ -69,7 +69,7 @@ public class DagligSkaev extends Ordination {
     Hvis en af betingelserne ikke er opfyldt, vil metoden kaste en IllegalArgumentException med en passende besked.
 
     Hvis alle betingelserne er opfyldt, vil metoden beregne den samlede mængde af medicin, der skal tages på en enkelt dag,
-     ved at summere alle doser. Totaldosis returneres derefter som en double.
+     ved at summere alle doser.
      */
     @Override
     public double doegnDosis() {

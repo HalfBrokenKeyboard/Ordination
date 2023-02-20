@@ -86,8 +86,8 @@ public class Controller {
 	 */
 
 	/*
-	Denne metode opretter og retunerer en ny "DagligSkaev ordination" baseret på den angivne parametre. Metoden
-	kontrollerer først om, startdatoen er efter slutdatoen, og kaster en Exception, hvis det er tilfældet.
+	Denne metode opretter og retunerer en ny "DagligSkaev ordination".
+	 Metoden kontrollerer først om, startdatoen er efter slutdatoen, og kaster en Exception, hvis det er tilfældet.
 	Herefter kontrollerer den, om alle angivne antal enheder er positive, og kaster en Exception, hvis det ikke er tilfældet.
 	Metoden opretter derefter en ny dagligskaev ordination og tildeler den angivne patient og lægemiddel. Den opretter
 	herefter en dosis for hver angivet tid og antalenheder ved hjælp af opretDosis() metoden i dagligSkaev klassen. Endelig
