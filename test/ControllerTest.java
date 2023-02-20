@@ -281,6 +281,7 @@ public class ControllerTest {
         laegemiddel = new Laegemiddel("Test Laegemiddel", 1.0, 2.0, -2, "stk");
         LocalTime[] klokkeSlet = {LocalTime.of(8, 0), LocalTime.of(12, 0), LocalTime.of(16, 0)};
         double[] antalEnheder = {1.0, 2.0,-2};
+
         Controller c = Controller.getTestController();
 
         //Act & assert

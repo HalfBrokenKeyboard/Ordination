@@ -66,7 +66,7 @@ public class DagligSkaev extends Ordination {
     Der skal være en startdato for ordinationen
     Der skal være en slutdato for ordinationen
     Der skal være mindst én dosis, der skal tages
-    Hvis en af betingelserne ikke er opfyldt, vil metoden kaste en IllegalArgumentException med en passende besked.
+    Hvis en af betingelserne ikke er opfyldt, vil metoden kaste en Exception med en passende besked.
 
     Hvis alle betingelserne er opfyldt, vil metoden beregne den samlede mængde af medicin, der skal tages på en enkelt dag,
      ved at summere alle doser.
